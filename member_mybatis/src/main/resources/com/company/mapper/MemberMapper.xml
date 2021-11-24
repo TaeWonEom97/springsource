@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.mapper.MemberMapper">
+	<!-- 전체 조회 : list -->
+	<select id="list" resultType="com.company.domain.MemberDTO">
+		select * from member
+	</select>
+	<!-- 특정 멤버 조회 -->
+	<select id="read" resultType="com.company.domain.MemberDTO">
+		select * from member where userid=#{userid} and password=#{password}
+	</select>
+	<insert id="insert">
+		insert into member(userid,password,name,gender,email)
+		values(#{userid},#{password},#{name},#{gender},#{email})
+	</insert>
+	<delete id="delete">
+		delete from member where userid=#{userid}
+	</delete>
+	<update id="update">
+		update member set password=#{confirm_password} where userid=#{userid} and password=#{password}
+	</update>
+</mapper>
