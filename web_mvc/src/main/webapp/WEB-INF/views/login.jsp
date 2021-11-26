@@ -16,6 +16,10 @@
 	<div>
 		<label for="password">password</label>
 		<input type="password" name="password" id="password" />
+	</div >
+	<div>
+		<label for="name">name</label>
+		<input type="text" name="name" id="name" />
 	</div>
 	<div>
 		<input type="submit" value="전송" />
