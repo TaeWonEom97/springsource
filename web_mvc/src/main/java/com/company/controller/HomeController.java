@@ -42,7 +42,7 @@ public class HomeController {
 		log.info("/doA 요청");
 //		rttr.addFlashAttribute("age",20);
 		rttr.addAttribute("age", 20);
-		rttr.addAttribute("name", "홍길동");
+		rttr.addFlashAttribute("name", "홍길동");
 		return "redirect:/doB";
 	}
 	
