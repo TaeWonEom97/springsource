@@ -9,4 +9,6 @@ public interface BookService {
 	public List<BookDTO> selectbook();
 	public boolean insert(BookDTO bookDto);
 	public BookDTO select(String code);
+	public boolean delete(String code);
+	public boolean update(BookDTO updateDto);
 }

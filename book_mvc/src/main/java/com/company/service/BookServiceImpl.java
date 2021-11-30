@@ -28,5 +28,17 @@ public class BookServiceImpl implements BookService {
 	public BookDTO select(String code) {
 		return mapper.select(code);
 	}
+
+	@Override
+	public boolean delete(String code) {
+		return mapper.delete(code)>0?true:false;
+	}
+
+	@Override
+	public boolean update(BookDTO updateDto) {
+		return mapper.update(updateDto)>0?true:false;
+	}
+
+
 	
 }

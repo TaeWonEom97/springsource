@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.company.domain.BookDTO;
 import com.company.service.BookService;
@@ -53,12 +54,26 @@ public class BookController {
 		return "/book/insert";
 	}
 	
-	//  /book/read
-	@GetMapping("/read")
+	//  /book/read or /book/modify
+	@GetMapping({"/read","/modify"})
 	public void readGet(String code,Model model) {
 		log.info("책 정보 읽기");
 		BookDTO dto = service.select(code);
 		model.addAttribute("dto",dto);
+	}
+	@GetMapping("/remove")
+	public String removePost(String code) {
+		log.info("삭제 요청"+code);
+		service.delete(code);
+		return "redirect:/book/list";
+	}
+	
+	@PostMapping("/update")
+	public String modifyPost(BookDTO updateDto,RedirectAttributes rttr) {
+		log.info("수정 요청");
+		service.update(updateDto);
+		rttr.addAttribute("code",updateDto.getCode());
+		return "redirect:/book/read"; 
 	}
 
 }

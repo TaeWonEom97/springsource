@@ -8,5 +8,6 @@ public interface BookMapper {
 	public List<BookDTO> selectbook();
 	public int insert(BookDTO bookDto);
 	public BookDTO select(String code);
-
+	public int delete(String code);
+	public int update(BookDTO updateDto);
 }
