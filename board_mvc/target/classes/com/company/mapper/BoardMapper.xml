@@ -11,10 +11,26 @@
 		insert into spring_board(bno,title,writer,content) values(#{bno}, #{title}, #{writer}, #{content})
 	</insert>
 	
-	<!-- 전체 목록 -->
-	<select id="select" resultType="com.company.domain.BoardDTO">
+	<!-- 전체 목록 페이지 나누기 전-->
+	<!-- <select id="select" resultType="com.company.domain.BoardDTO">
 		select bno,title,writer,regdate,updatedate from spring_board where bno>0 order by bno desc, regdate desc
+	</select> -->
+	
+	<select id="select"  resultType="com.company.domain.BoardDTO">
+		<![CDATA[
+		select bno, title,writer,regdate,updatedate
+		from(select /*+INDEX_DESC(spring_board pk_spring_board)*/ rownum rn,bno,title,writer,regdate,updatedate
+			from SPRING_BOARD 
+			where rownum <= (#{pageNum} * #{amount}))
+		where rn> (#{pageNum}-1) * #{amount}
+		]]>
 	</select>
+	
+	<!-- 전체 게시물 수 -->
+	<select id="totalCnt" resultType="int">
+		select count(*) from spring_board where bno>0
+	</select>
+	
 	
 	<!-- 읽어 오기 -->
 	<select id="read" resultType="com.company.domain.BoardDTO">

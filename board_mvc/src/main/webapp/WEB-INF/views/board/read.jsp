@@ -43,6 +43,8 @@
             </div> 
             
 <form action="" id="actionForm">
+	<input type="hidden" name="pageNum" value="${cri.pageNum}" />
+	<input type="hidden" name="amount" value="${cri.amount}" />
 	<input type="hidden" name="bno" value="${dto.bno}" />
 </form>       
 <script src="/resources/js/read.js"></script>   

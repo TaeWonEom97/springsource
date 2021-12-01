@@ -12,3 +12,45 @@ alter table spring_board add constraint pk_spring_board primary key(bno);
 create sequence seq_board;
 
 select * from SPRING_BOARD;
+
+select count(*) from spring_board;
+--페이지 나누기
+--rownum(가상 행번호)
+select rownum, bno, title from spring_board;
+
+--rownum 부여시 주의할 점 order by 절과 같이 올 때
+
+--더미 데이터
+insert into SPRING_BOARD(bno,title,content,writer)
+(select seq_board.nextval, title, content, writer from spring_board);
+
+select rownum,bno,title
+from(select bno,title from spring_board where bno>0 order by bno desc) where rownum<10; 
+
+-- 오라클 힌트
+select /*INDEX_DESC(spring_board pk_spring_board)*/ rownum,bno,title
+from SPRING_BOARD
+where rownum <=10;
+
+select rn, bno, title
+from(select /*INDEX_DESC(spring_board pk_spring_board)*/ rownum rn,bno,title
+	from SPRING_BOARD 
+	where rownum <=20)
+where rn>10; 
+
+--검색
+
+--제목/ 내용/ 작성자 단일항목 검색
+select rn, bno, title
+from(select /*INDEX_DESC(spring_board pk_spring_board)*/ rownum rn,bno,title
+	from SPRING_BOARD 
+	where title like '%Test%'and rownum <=20)
+where rn>10; 
+--제목 or 내용/ 제목 or 작성자 / 제목 or 내용 or 작성자 다중항목 검색
+select rn, bno, title
+from(select /*INDEX_DESC(spring_board pk_spring_board)*/ rownum rn,bno,title
+	from SPRING_BOARD 
+	where (title like '%dd%' or content like '%gg%') and rownum <=20)
+where rn>10; 
+
+--MyBatis 동적 태그
