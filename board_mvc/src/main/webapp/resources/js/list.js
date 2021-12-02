@@ -40,10 +40,11 @@ $(function(){
 	//amount 클릭이 되면
 	$("#amount").change(function(){
 		//amount 값 가져오기
-		let amount=$(this).val();
+		let amount=$(this).val(); 
 		//가져온 값을 actionForm의 amount 값 수정하기
 		actionForm.find("input[name='amount']").val(amount);
 		//actionForm 보내기
+		actionForm.find("input[name='bno']").remove();
 		actionForm.submit();
 	})
 	
@@ -80,7 +81,7 @@ $(function(){
 		}
 		
 		//pageNum의 값을 1로 변경하기
-		$("#searchForm").find("input[name='pageNum']").val("1");
+		$("#searchForm").find("input[name='pageNum']").val("1"); 
 		
 				
 		//검색 폼 보내기
