@@ -54,3 +54,20 @@ from(select /*INDEX_DESC(spring_board pk_spring_board)*/ rownum rn,bno,title
 where rn>10; 
 
 --MyBatis 동적 태그
+
+-- 댓글 테이블
+create table spring_reply(
+	rno number(10,0) constraint pk_reply primary key,
+	bno number(10,0) not null,
+	reply varchar2(1000) not null,
+	replyer varchar2(50) not null,
+	replaydate date default sysdate,
+	updatedate date default sysdate,
+	constraint fk_reply_board foreign key(bno) references spring_board(bno)
+);
+
+create sequence seq_reply;
+
+select * from SPRING_reply;
+
+alter table spring_reply rename column replaydate to replydate;

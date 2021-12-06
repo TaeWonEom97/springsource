@@ -19,7 +19,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
+    <div class="navbar-nav"> 
       <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
       <a class="nav-link" href="/book/insert">도서입력</a>
       <a class="nav-link" href="#">도서수정</a>
