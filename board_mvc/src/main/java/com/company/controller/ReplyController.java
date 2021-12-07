@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.company.domain.Criteria;
 import com.company.domain.ReplyDTO;
+import com.company.domain.ReplyPageDTO;
 import com.company.service.ReplySerivce;
 
 import lombok.extern.log4j.Log4j2;
@@ -63,8 +65,9 @@ public class ReplyController {
 	//댓글 전체 가져오기
 	// /replies/page/{bno}/{page} + GET
 	@GetMapping("/pages/{bno}/{page}")
-	public ResponseEntity<List<ReplyDTO>> list(@PathVariable int bno){
+	public ResponseEntity<ReplyPageDTO> list(@PathVariable int bno,@PathVariable int page){
 		log.info("댓글 전체 가져오기"+bno);
-		return new ResponseEntity<List<ReplyDTO>>(service.list(bno),HttpStatus.OK);
+		Criteria cri = new Criteria(page, 10);
+		return new ResponseEntity<ReplyPageDTO>(service.list(cri,bno),HttpStatus.OK);
 	}
 }

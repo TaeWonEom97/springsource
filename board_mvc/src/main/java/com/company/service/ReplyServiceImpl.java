@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.company.domain.Criteria;
 import com.company.domain.ReplyDTO;
+import com.company.domain.ReplyPageDTO;
 import com.company.mapper.ReplyMapper;
 
 @Service
@@ -35,8 +37,10 @@ public class ReplyServiceImpl implements ReplySerivce {
 	}
 
 	@Override
-	public List<ReplyDTO> list(int bno) {
-		return mapper.list(bno);
+	public ReplyPageDTO list(Criteria cri,int bno) {
+		return new ReplyPageDTO(mapper.getCountByBno(bno),mapper.list(cri, bno));
 	}
+
+
 
 }
