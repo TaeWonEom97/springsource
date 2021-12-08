@@ -15,6 +15,7 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardMapper mapper;
 	
+	
 	@Override
 	public boolean insert(BoardDTO boardDto) {
 		return mapper.insert(boardDto)>0?true:false;

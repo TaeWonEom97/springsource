@@ -141,6 +141,10 @@ $(function(){
 						  .attr("readonly","readonly");
 			modal.data("rno",data.rno);
 			
+			//작성날짜 영역 보여주기
+			modal.find("[name='replydate']").closest("div").show();		
+			//모든 버튼 보여주기
+			modal.find("button").show();
 			//등록버튼 숨기기
 			modal.find("#modalRegisterBtn").hide();
 			
