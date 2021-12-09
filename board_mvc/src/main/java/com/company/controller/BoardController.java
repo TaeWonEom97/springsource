@@ -3,6 +3,8 @@ package com.company.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.company.domain.AttachFileDTO;
 import com.company.domain.BoardDTO;
 import com.company.domain.Criteria;
 import com.company.domain.PageDTO;
@@ -35,6 +38,13 @@ public class BoardController {
 	@PostMapping("/register")
 	public String registerPost(BoardDTO boardDto,RedirectAttributes rttr) {
 		log.info("register"+boardDto); 
+		
+		/*
+		 * if(boardDto.getAttachList()!=null) {
+		 * boardDto.getAttachList().forEach(attach->log.info(attach+"")); }
+		 */
+		
+		
 		service.insert(boardDto);
 //		log.info("bno "+boardDto.getBno());
 		rttr.addFlashAttribute("result",boardDto.getBno());
@@ -88,5 +98,10 @@ public class BoardController {
 		
 	}
 	
+	@GetMapping("/getAttachList")
+	public ResponseEntity<List<AttachFileDTO>> getAttachList(int bno){
+		log.info("파일 첨부가져오기");
+		return new ResponseEntity<List<AttachFileDTO>>(service.findByBno(bno),HttpStatus.OK);
+	}
 
 }
