@@ -54,6 +54,5 @@
 	</div>
 </div>    
 
-
 <script src="/resources/js/upload.js"></script>      
 <%@include file="../includes/footer.jsp" %>       

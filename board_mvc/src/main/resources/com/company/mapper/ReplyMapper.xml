@@ -36,4 +36,9 @@
 	<select id="getCountByBno" resultType="int">
 		select count(rno) from spring_reply where bno=#{bno}
 	</select>
+	
+	<!--댓글 삭제  -->
+   <delete id="deleteAll">
+      delete from spring_reply where bno=#{bno}
+   </delete>
 </mapper>
