@@ -13,12 +13,11 @@
     />
     <!-- Custom styles for this template -->
     <link href="/resources/css/signin.css" rel="stylesheet" />
-<link rel="stylesheet" href="/resources/css/main.css" />
 </head>
 <body>
 <div class="container center-contents">
 	<div class="row">
-		<h1 class="title display-5">admin 페이지</h1>
+		<h1 class="title display-5 text-danger">접근 권한이 없습니다.</h1>
 	</div>
 	<div class="links">
 		<div class="link">
